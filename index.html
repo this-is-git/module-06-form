@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Разметка форм</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.6.0/modern-normalize.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <form class="form js-speaker-form">
+      <div class="form__group">
+        <input
+          class="form__input"
+          type="text"
+          id="name"
+          name="name"
+          autofocus
+          placeholder=" "
+        />
+        <label class="form__label" for="name">Ім'я</label>
+        <svg class="icon" width="20" height="20">
+          <use href="./images/symbol-defs.svg#icon-user"></use>
+        </svg>
+      </div>
+      <div class="form__group">
+        <input
+          class="form__input"
+          type="tel"
+          id="tel"
+          name="tel"
+          placeholder=" "
+          autocomplete="on"
+        />
+        <label class="form__label" for="tel">Телефон</label>
+        <svg class="icon" width="20" height="20">
+          <use href="./images/symbol-defs.svg#icon-phone"></use>
+        </svg>
+      </div>
+      <div class="form__group">
+        <input
+          class="form__input"
+          type="email"
+          name="email"
+          id="email"
+          placeholder=" "
+        />
+        <label class="form__label" for="email">Пошта</label>
+        <svg class="icon" width="20" height="20">
+          <use href="./images/symbol-defs.svg#icon-mail"></use>
+        </svg>
+      </div>
+      <div class="group" role="group">
+        <h2 class="group__title">Технології</h2>
+        <ul class="group__options">
+          <li class="group__options-item">
+            <input
+              class="group-options__input"
+              type="checkbox"
+              name="tehnology"
+              value="html"
+              id="html"
+            />
+            <label class="group-options__label" for="html">HTML+CSS</label>
+          </li>
+          <li class="group__options-item">
+            <input
+              class="group-options__input"
+              type="checkbox"
+              name="tehnology"
+              value="js"
+              id="js"
+            />
+            <label class="group-options__label" for="js">Js</label>
+          </li>
+          <li class="group__options-item">
+            <input
+              class="group-options__input"
+              type="checkbox"
+              name="tehnology"
+              value="react"
+              id="react"
+            />
+            <label class="group-options__label" for="react">React</label>
+          </li>
+        </ul>
+      </div>
+      <div class="group" role="group">
+        <h2 class="group__title">Досвід</h2>
+        <ul class="position">
+          <li class="position-item">
+            <input
+              class="position-item__input"
+              type="radio"
+              name="position"
+              id="trainee"
+              value="trainee"
+            />
+            <label class="position-item__label" for="trainee">Trainee</label>
+          </li>
+          <li class="position-item">
+            <input
+              class="position-item__input"
+              type="radio"
+              name="position"
+              id="junior"
+              value="junior"
+            />
+            <label class="position-item__label" for="junior">Junior</label>
+          </li>
+          <li class="position-item">
+            <input
+              class="position-item__input"
+              type="radio"
+              name="position"
+              id="midle"
+              value="midle"
+            />
+            <label class="position-item__label" for="midle">Midle</label>
+          </li>
+        </ul>
+      </div>
+      <h2 class="group__title">Дата співбесіди</h2>
+      <div class="form__group">
+        <label for="date"></label>
+        <input
+          class="form-date__input"
+          type="datetime-local"
+          name="date"
+          id="date"
+          min="2022-08-18T10:00"
+          max="2022-08-22T18:00"
+        />
+      </div>
+      <div class="form__group">
+        <label for="file"></label>
+        <input type="file" name="file" id="file" />
+      </div>
+      <div class="form__group form__group-done">
+        <label for="coment">Супровідний лист</label>
+        <textarea class="coment" name="coment" id="coment" rows="10"></textarea>
+      </div>
+      <h2 class="group__title">Згода з умовами</h2>
+      <label for="policy">Згоден</label>
+      <input
+        class="form-done__input"
+        type="checkbox"
+        id="policy"
+        name="policy"
+        value="policy"
+      />
+      <button type="submit">Відправити</button>
+    </form>
+    <script>
+      (() => {
+        document
+          .querySelector(".js-speaker-form")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            new FormData(e.currentTarget).forEach((value, name) =>
+              console.log(`${name}: ${value}`)
+            );
+
+            // e.currentTarget.reset();
+          });
+
+        document.querySelector(".comment").addEventListener("input", (e) => {
+          console.log(e.target.value);
+          if (e.target.value !== "") {
+            document.querySelector(".form-btn").removeAttribute("disabled");
+          } else {
+            document.querySelector(".form-btn").setAttribute("disabled", true);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
